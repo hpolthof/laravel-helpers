@@ -1,0 +1,20 @@
+{
+    "name": "hpolthof/laravel-helpers",
+    "description": "A collection of helpers for Laravel",
+    "type": "library",
+    "require": {
+        "laravel/laravel": "^5.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Olthof",
+            "email": "hpolthof@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hpolthof\\LaravelHelpers\\": "src"
+        }
+    }
+}
