@@ -3,7 +3,7 @@
     "description": "A collection of helpers for Laravel",
     "type": "library",
     "require": {
-        "laravel/laravel": "^5.6"
+        "laravel/laravel": "~5.0"
     },
     "license": "MIT",
     "authors": [
@@ -16,5 +16,6 @@
         "psr-4": {
             "Hpolthof\\LaravelHelpers\\": "src"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
