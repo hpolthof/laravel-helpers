@@ -45,6 +45,39 @@ class PDF
         return $data;
     }
 
+    /**
+     * Convert a PDF to a non editable monochrome PDF.
+     * This function is intended for sending a PDF as Fax.
+     *
+     * @param $data
+     * @return string
+     */
+    public static function monochrome($data)
+    {
+        try {
+            // Store as tempfile
+            $fileIn = tempnam(sys_get_temp_dir(), 'pdf-compress-').'.pdf';
+            $fileOut = tempnam(sys_get_temp_dir(), 'pdf-compress-');
+            file_put_contents($fileIn, $data);
+
+            exec("/usr/bin/pdftoppm -png -aa yes $fileIn $fileOut");
+            $files = glob($fileOut.'-*.png');
+            exec("convert -colorspace gray +dither -colors 2 -type bilevel ".implode(' ', $files).' '.$fileOut.'.pdf');
+
+            $result = file_get_contents($fileOut.'.pdf');
+
+            // Remove temp
+            unlink($fileIn);
+            unlink($fileOut.'.pdf');
+            foreach($files as $file) {
+                unlink($file);
+            }
+
+        } catch (\Exception $exception) {}
+
+        return $result;
+    }
+
     public static function flatten($data)
     {
         try {
