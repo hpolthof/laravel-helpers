@@ -2,9 +2,7 @@
     "name": "hpolthof/laravel-helpers",
     "description": "A collection of helpers for Laravel",
     "type": "library",
-    "require": {
-        "laravel/laravel": "~5.0"
-    },
+    "require": {},
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +14,5 @@
         "psr-4": {
             "Hpolthof\\LaravelHelpers\\": "src"
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
