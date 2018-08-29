@@ -4,7 +4,13 @@ use Illuminate\Http\Response;
 
 class PDF
 {
-    public static function response(string $data, $inline = true, $filename = 'document.pdf'): Response
+    /**
+     * @param string $data
+     * @param bool $inline
+     * @param string $filename
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public static function response($data, $inline = true, $filename = 'document.pdf')
     {
         return response($data, 200, [
             'Content-type' => 'application/pdf',
@@ -13,7 +19,7 @@ class PDF
         ]);
     }
 
-    public static function compressPdf(string $data): string
+    public static function compressPdf($data)
     {
         try {
             // Store as tempfile
@@ -39,7 +45,7 @@ class PDF
         return $data;
     }
 
-    public static function flatten(string $data): string
+    public static function flatten($data)
     {
         try {
             // Store as tempfile
@@ -65,7 +71,7 @@ class PDF
         return $result;
     }
 
-    public static function metadata(string $data, $title = '', $author = '', $subject = '', $keywords = '', $creator = '', $producer = '')
+    public static function metadata($data, $title = '', $author = '', $subject = '', $keywords = '', $creator = '', $producer = '')
     {
         $date = date('YMDHis');
         $metadata = <<<EOF
@@ -100,7 +106,12 @@ EOF;
         return $result;
     }
 
-    public static function toResponse($data, $filename = null): Response
+    /**
+     * @param $data
+     * @param null $filename
+     * @return Response
+     */
+    public static function toResponse($data, $filename = null)
     {
         if ($filename === null) {
             $disposition = "inline; filename=document.pdf";
