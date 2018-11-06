@@ -15,7 +15,7 @@ class PDF
         return response($data, 200, [
             'Content-type' => 'application/pdf',
             'Content-size' => strlen($data),
-            'Content-disposition' => ($inline ? 'inline' : 'attachment') . '; filename='.urlencode($filename),
+            'Content-disposition' => ($inline ? 'inline' : 'attachment') . '; filename="'.urlencode($filename).'"',
         ]);
     }
 
